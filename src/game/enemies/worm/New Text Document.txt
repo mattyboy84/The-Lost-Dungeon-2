@@ -1,0 +1,2 @@
+textbox size, W:69, 66
+offset, W: 15 H: 15
