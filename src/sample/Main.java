@@ -1,5 +1,6 @@
 package sample;
 
+import animatefx.animation.*;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -134,6 +135,16 @@ public class Main extends Application {
                     break;
                 case P:
                     hero.addHeart(group);
+                    break;
+                case G:
+                    //shakes left to right a few times
+                    //new Shake(hero.room.boss.boss_gurdyjr.get(0).getCurrentFace()).play();
+                    //new Shake(hero.room.boss.boss_gurdyjr.get(0).bossImage).play();
+                    //
+                    new RubberBand(hero.room.boss.boss_gurdyjr.get(0).getCurrentFace()).play();
+                    new RubberBand(hero.room.boss.boss_gurdyjr.get(0).bossImage).play();
+                    //System.out.println("");
+
                     break;
                 case H:
                     //System.out.println(hero.health.health);

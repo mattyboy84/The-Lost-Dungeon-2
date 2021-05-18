@@ -1,6 +1,9 @@
 package sample;
 
+import animatefx.animation.AnimateFXInterpolator;
+import animatefx.animation.RubberBand;
 import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.CacheHint;
 import javafx.scene.Group;
@@ -67,10 +70,6 @@ public class Boss_Gurdyjr extends Boss_BaseClass {
 
         public Image getFace() {
             return face;
-        }
-
-        public void setFace(Image face) {
-            this.face = face;
         }
     }
 
@@ -176,7 +175,7 @@ public class Boss_Gurdyjr extends Boss_BaseClass {
             //System.out.println("changing");
             currentFace.setImage((bossFaces.get(3).getFace()));
 
-            //this.position.set((int) position.x, (int) position.y);
+            this.position.set((int) position.x, (int) position.y);
 
         }
     }
@@ -197,6 +196,9 @@ public class Boss_Gurdyjr extends Boss_BaseClass {
 
     private void idle(Hero hero) {
         currentFace.setImage((bossFaces.get(3).getFace()));
+        //
+        this.position.set((int) position.x, (int) position.y);
+        //
         if (idleTimer > 10) {
             idleTimer = 0;
 
@@ -248,13 +250,18 @@ public class Boss_Gurdyjr extends Boss_BaseClass {
         }
 
         //
-        if (this.position.y >= this.jumpingHeight) {//touched the ground
+        if ((this.position.y+this.velocity.y) >= this.jumpingHeight) {//touched the ground
+            //
             currentFace.setImage(bossFaces.get(0).getFace());
             //
+            this.position.set(this.position.x,this.jumpingHeight);
             //System.out.println("ground");
             if (!tearBurst) {
                 tearBurst(group, hero, this.tears, this.tear_explosions);
                 tearBurst = true;
+                //
+                new RubberBand(this.currentFace).play();
+                new RubberBand(this.bossImage).play();
             }
             //
             this.velocity.set(0, 0);
@@ -278,6 +285,7 @@ public class Boss_Gurdyjr extends Boss_BaseClass {
 
 
     }
+
     private void tearBurst(Group group, Hero hero, ArrayList<Enemy_Tear> tears, ArrayList<Tear_Explosion> tear_explosions) {
         for (int i = 0; i < 8; i++) {
             /*
@@ -288,7 +296,7 @@ public class Boss_Gurdyjr extends Boss_BaseClass {
             */
             Vecc2f dir = new Vecc2f((float) (Math.sin(Math.toRadians(45) * (i + 1))), (float) (Math.cos(Math.toRadians(45) * (i + 1))));
             //
-            this.tears.add(new Enemy_Tear(new Vecc2f(this.center.x,this.center.y+30), group, hero, dir, 22,11, tears, tear_explosions));
+            this.tears.add(new Enemy_Tear(new Vecc2f(this.center.x, this.center.y + 30), group, hero, dir, 22, 11, tears, tear_explosions));
 
         }
     }
@@ -356,6 +364,12 @@ public class Boss_Gurdyjr extends Boss_BaseClass {
                     bossGurdyjr.setArrayPos(bossGurdyjr.getArrayPos() - 1);
                 }
             }
+        }
+        if (room.boss.size() == 0) {
+            //
+            System.out.println("Victory");
+            room.openDoors();
+            System.out.println("Doors open");
         }
     }
 
