@@ -290,8 +290,6 @@ public class Main extends Application {
         room_neighbours.remove(randShopRoom);
         localRooms++;
 
-        map[10][9]=3;
-        localRooms++;
 
         //System.out.println("O  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 COLUMN/ J");//outputs the map
         for (int i = 0; i < map.length; i++) {

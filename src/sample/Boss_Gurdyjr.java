@@ -74,7 +74,7 @@ public class Boss_Gurdyjr extends Boss_BaseClass {
     }
 
     public Boss_Gurdyjr(ArrayList<Boss_Gurdyjr> boss_gurdyjr, Hero hero, Boss boss, Background_Items background_items, Group group) {
-        this.size = 4;
+        this.size = 10;
         this.damage = 1;
 
         //new Pulse().play();//animatefx effect
@@ -349,7 +349,7 @@ public class Boss_Gurdyjr extends Boss_BaseClass {
         this.healthBarRec.setWidth((int) (this.rectWidth * ((float) this.health / this.maxHealth)));
         if (this.health == 0) {
 
-            for (int i = 0; i < this.size + random.nextInt(2); i++) {//blood and guts background items
+            for (int i = 0; i < (this.size + random.nextInt(6)); i++) {//blood and guts background items
                 room.background_items.addBlood(this.position, this.bossImage, group, "large");
                 room.background_items.addGuts(this.position, this.bossImage, group);
             }

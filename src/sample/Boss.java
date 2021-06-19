@@ -12,8 +12,8 @@ public class Boss {
     ArrayList<Boss_Fistula> boss_fistula = new ArrayList<>();
     ArrayList<Boss_Gurdyjr> boss_gurdyjr = new ArrayList<>();
     //String[] bossName = {"fistula"};
-    //String[] bossName = {"fistula", "Gurdyjr"};
-    String[] bossName = {"Gurdyjr"};
+    String[] bossName = {"fistula", "Gurdyjr"};
+    //String[] bossName = {"Gurdyjr"};
 
     String boss;
     Random random = new Random();
@@ -28,6 +28,7 @@ public class Boss {
                 boss_gurdyjr.add(new Boss_Gurdyjr(boss_gurdyjr, hero, boss, background_items, group));
                 break;
             case 1:
+                boss_fistula.add(new Boss_Fistula(boss_fistula, 4, (1920 / 2), (1080 / 2), 1, boss, hero));
                 break;
         }
     }
