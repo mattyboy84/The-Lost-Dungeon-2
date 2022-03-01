@@ -1,3 +1,2 @@
 # The-Lost-Dungeon
-cool game
-Binding of Isaac but worse
+A re-creation of 'The Binding of Isaac'
